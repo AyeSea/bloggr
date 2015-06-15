@@ -8,7 +8,34 @@
 </head>
 <body>
 
-<%= yield %>
+	<!-- Update so that different header shows if user is logged out vs. logged in -->
 
+	<!-- Logged Out Header -->
+	<header class="container-fluid loggedout-header">
+		<div class="container">
+			
+			<div class="pull-left logo">
+				<h1>
+					<a href="#">clonebook</a>
+				</h1>
+			</div>
+			
+			<!-- Add password field, checkbox for 'remember me', and style -->
+			<div class="pull-right login-form">
+				<%= form_for :user do |f| %>
+					<%= f.label :email %>
+					<%= f.email_field :email %>
+
+					<%= f.submit "Log In" %>
+				<% end %>
+			</div>
+
+		</div>
+	</header>
+
+
+	<%= yield %>
+
+	<%= debug(params) if Rails.env.development? %>
 </body>
 </html>

@@ -1,0 +1,23 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+$clonebook-blue: #3a5795;
+
+.loggedout-header {
+	height: 82px;
+	background-color: $clonebook-blue;
+	border-bottom: 1px solid #133783;
+	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);
+
+	.logo {
+		
+		a {
+			color: #fff;
+			font-weight: bold;
+		}
+
+		a:hover,
+		a:active {
+			text-decoration: none;
+		}
+	}
+}
