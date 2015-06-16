@@ -7,19 +7,58 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<!-- Update so that different header shows if user is logged out vs. logged in -->
 
-	<!-- Logged Out Header -->
 	<header class="container-fluid loggedout-header">
-		<div class="container">
-			
-			<div class="pull-left logo">
-				<h1>
-					<a href="/">clonebook</a>
-				</h1>
+
+		<% if user_signed_in? %>
+			<!-- Logged In Header -->
+			<div class="container">
+				
+				<!-- Logo -->
+				<div class="pull-left logo">
+					<h1>
+						<a href="/">clonebook</a>
+					</h1>
+				</div>		
+
+				<!-- Log Out Link -->
+				<div class="pull-right">
+				  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>     
+				</div>
+
 			</div>
 
-		</div>
+		<% else %>
+			<!-- Logged Out Header -->
+			<div class="container">
+				
+				<!-- Logo -->
+				<div class="pull-left logo">
+					<h1>
+						<a href="/">clonebook</a>
+					</h1>
+				</div>
+
+				<!-- Login Form -->
+				<div class="pull-right login-small">
+					<%= form_for(:user, :url => session_path(:user)) do |f| %>
+						<%= f.label :email %>
+					  <%= f.text_field :email %>
+	 				  <%= f.check_box :remember_me %>
+					  <%= f.label :remember_me %>
+
+					  <%= f.label :password %>
+					  <%= f.password_field :password %>
+					  <%= link_to "Forgot your password?", new_password_path(:user) %><br>
+
+					  <%= f.submit 'Sign in' %>
+					<% end %>
+				</div>
+
+			</div>
+
+		<% end %>
+		
 	</header>
 
 	<%= render "layouts/flash" %>
