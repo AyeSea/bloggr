@@ -1,66 +1,68 @@
-<div class="container">
-	<div class="row">
+<div class="container-fluid jumbotron">
+	<div class="container">
+		<div class="row">
 
-		<!-- Quick Info -->
-		<div class="col-xs-6 quick-info">
-			<h2>Connect with friends and the world around you on Clonebook.</h2>
+			<!-- Quick Info -->
+			<div class="col-xs-6 quick-info">
+				<h2>Connect with friends and the world around you on Clonebook.</h2>
+			</div>
+
+			<div class="col-xs-6">
+				<!-- move signup form into partial and render it here -->
+				<h2>Sign up</h2>
+				<%= form_for(:user, :url => registration_path(:user)) do |f| %>
+				  
+				  <div class="field">
+				    <%= f.label :first_name %><br />
+				    <%= f.text_field :first_name, autofocus: true %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :last_name %><br />
+				    <%= f.text_field :last_name %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :email %><br />
+				    <%= f.email_field :email %>
+				  </div>
+
+				   <div class="field">
+				    <%= f.label :email_confirmation %><br />
+				    <%= f.email_field :email_confirmation %>
+				  </div> 
+
+				  <div class="field">
+				    <%= f.label :password %>
+				    <% if @minimum_password_length %>
+				    <em>(<%= @minimum_password_length %> characters minimum)</em>
+				    <% end %><br />
+				    <%= f.password_field :password, autocomplete: "off" %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :password_confirmation %><br />
+				    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+				  </div>
+
+				  <!-- Add birthday dropdown here -->
+				  <div class="field">
+				    <%= f.label :birthday %><br />
+				    <%= f.date_field :birthday %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :gender %><br />
+				    <%= f.text_field :gender %>
+				  </div>
+
+				  <div class="actions">
+				    <%= f.submit "Sign up" %>
+				  </div>
+				<% end %>
+
+			</div>
+
 		</div>
-
-		<div class="col-xs-6">
-			<!-- move signup form into partial and render it here -->
-			<h2>Sign up</h2>
-			<%= form_for(:user, :url => registration_path(:user)) do |f| %>
-			  
-			  <div class="field">
-			    <%= f.label :first_name %><br />
-			    <%= f.text_field :first_name, autofocus: true %>
-			  </div>
-
-			  <div class="field">
-			    <%= f.label :last_name %><br />
-			    <%= f.text_field :last_name %>
-			  </div>
-
-			  <div class="field">
-			    <%= f.label :email %><br />
-			    <%= f.email_field :email %>
-			  </div>
-
-			   <div class="field">
-			    <%= f.label :email_confirmation %><br />
-			    <%= f.email_field :email_confirmation %>
-			  </div> 
-
-			  <div class="field">
-			    <%= f.label :password %>
-			    <% if @minimum_password_length %>
-			    <em>(<%= @minimum_password_length %> characters minimum)</em>
-			    <% end %><br />
-			    <%= f.password_field :password, autocomplete: "off" %>
-			  </div>
-
-			  <div class="field">
-			    <%= f.label :password_confirmation %><br />
-			    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-			  </div>
-
-			  <!-- Add birthday dropdown here -->
-			  <div class="field">
-			    <%= f.label :birthday %><br />
-			    <%= f.date_field :birthday %>
-			  </div>
-
-			  <div class="field">
-			    <%= f.label :gender %><br />
-			    <%= f.text_field :gender %>
-			  </div>
-
-			  <div class="actions">
-			    <%= f.submit "Sign up" %>
-			  </div>
-			<% end %>
-
-		</div>
-
 	</div>
 </div>
