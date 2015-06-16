@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 	<!-- Update so that different header shows if user is logged out vs. logged in -->
 
 	<!-- Logged Out Header -->
@@ -16,23 +15,14 @@
 			
 			<div class="pull-left logo">
 				<h1>
-					<a href="#">clonebook</a>
+					<a href="/">clonebook</a>
 				</h1>
-			</div>
-			
-			<!-- Add password field, checkbox for 'remember me', and style -->
-			<div class="pull-right login-form">
-				<%= form_for :user do |f| %>
-					<%= f.label :email %>
-					<%= f.email_field :email %>
-
-					<%= f.submit "Log In" %>
-				<% end %>
 			</div>
 
 		</div>
 	</header>
 
+	<%= render "layouts/flash" %>
 
 	<%= yield %>
 
