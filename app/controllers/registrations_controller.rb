@@ -1,5 +1,29 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  before_filter :store_location
+
+  def store_location
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    return unless request.get? 
+    if (request.path != "/users/sign_in" &&
+        request.path != "/users/sign_up" &&
+        request.path != "/users/password/new" &&
+        request.path != "/users/password/edit" &&
+        request.path != "/users/confirmation" &&
+        request.path != "/users/sign_out" &&
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath 
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    session[:previous_url]
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
  def create
     build_resource(sign_up_params)
 
@@ -11,7 +35,8 @@ class RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
         #Signin user after succesful signup.
         sign_in(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        #Redirect user to their profile (show) page.
+        respond_with resource, location: user_path(current_user)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
@@ -23,12 +48,6 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
-
-	protected
-
-		def after_sign_up_path_for(resource)
-			after_sign_in_path_for(resource)
-		end
 
 	private
 
