@@ -2,7 +2,7 @@
 @import "bootstrap";
 $clonebook-blue: #3a5795;
 
-.loggedout-header {
+.site-header {
 	height: 82px;
 	background-color: $clonebook-blue;
 	border-bottom: 1px solid #133783;
@@ -21,3 +21,24 @@ $clonebook-blue: #3a5795;
 		}
 	}
 }
+
+#error_explanation {
+	background-color: #d2d2d2;
+	border: 1px solid red;
+}
+
+.site-footer {
+	background-color: #fff;
+	color: #3b5998;
+	
+	ul {
+		padding: 0;
+		
+		li {
+			list-style-type: none;
+			display: inline-block;
+			margin-right: 5px;
+		}
+	}
+}
+
