@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
+  before_save :capitalize_fields
 
 	validates :first_name, presence: true
 
@@ -14,5 +16,13 @@ class User < ActiveRecord::Base
 
 	validates :birthday, presence: true
 
-	validates :gender, presence: true, format: { with: /[MF]/, message: "Select Male or Female." }
+	validates :gender, presence: true, format: { with: /[mMfF]/, message: ": Select (M)ale or (F)emale." }
+
+	private
+	def capitalize_fields
+		self.first_name.capitalize!
+		self.last_name.capitalize!
+		self.gender.capitalize!
+	end
+
 end
