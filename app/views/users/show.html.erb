@@ -1,1 +1,16 @@
 <h1><%= @user.first_name %> <%= @user.last_name %>'s Page</h1>
+
+<h3>Friends</h3>
+
+<% @user.friends.each do |friend| %>
+	<p><%= friend.first_name %> <%= friend.last_name %></p>
+	
+	<p><%= link_to "View Profile", friend %></p>
+
+	<!-- User can only remove friends for their own account -->
+	<% if @user == current_user %>
+	<p><%= link_to "Remove Friend", friendship_path(friend_id: friend), method: :delete %></p>
+	<% end %>
+<% end %>
+
+<%= link_to "Find more friends!", users_path %>

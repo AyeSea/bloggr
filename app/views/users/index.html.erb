@@ -1,0 +1,46 @@
+<div class="container">
+	<h1>All Users</h1>
+	
+	<% @non_friends.each do |user| %>
+
+		<div class="friend-menu">
+			<h3 class="fullname"><%= user.first_name %> <%= user.last_name %></h3>
+		
+			<!-- if there is a pending request sent by current user, show as pending acceptance -->
+			<% if current_user.accepters.include?(user) %>
+
+			<button class="btn btn-default">
+				Pending Acceptance
+			</button>
+			
+			<!-- elsif there is a pending request sent to current_user, show confirm and reject buttons -->
+			<% elsif current_user.requesters.include?(user) %>
+
+			<button class="btn btn-default">
+				<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch %>
+			</button>
+
+			<button class="btn btn-default">
+				<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete %>
+			</button>
+
+			<!-- else (i.e. if there is no pending friendship request) -->
+			<% else %>
+
+			<button class="btn btn-default">
+				<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post %>
+			</button>
+
+			<% end %>
+
+		</div>
+
+	<% end %>
+
+</div>
+
+<!-- Case 1: No friend request sent or received (i.e. no friendship exists)
+     Case 2: Friend request sent by current user (pending friendship - sent by current user)
+     Case 3: Friend request received by current user (pending friendship - acceptance from current user)
+     Case 4: Already friends (friendship exists and the accepted column has a value of true)
+-->

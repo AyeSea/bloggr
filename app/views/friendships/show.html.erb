@@ -1,0 +1,14 @@
+<h1>Pending Friend Requests</h1>
+
+<% if current_user.accepting_friendships.any? %>
+<!-- show pending friend requests -->
+	<% @pending_friendships.each do |friendship| %>
+		<p><%= friendship.requester.first_name %> <%= friendship.requester.last_name %></p>
+		<p><%= link_to "Confirm", friendship_path(requester_id: friendship.requester), method: :patch %></p>
+		<p><%= link_to "Delete Request", friendship_path(friend_id: friendship.requester), method: :delete %></p>
+	<% end %>
+
+<% else %>
+	<p>No pending friend requests.</p>
+
+<% end %>

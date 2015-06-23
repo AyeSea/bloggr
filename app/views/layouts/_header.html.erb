@@ -13,7 +13,12 @@
 
 			<!-- Log Out Link -->
 			<div class="pull-right">
-				<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>     
+				<%= link_to 'Logout', destroy_user_session_path, :method => :delete %>     
+			</div>
+			
+			<!-- Pending Friends Link -->
+			<div class="pull-right">
+				<%= link_to 'Pending Friend Requests', friendship_path(current_user) %>
 			</div>
 
 		</div>
