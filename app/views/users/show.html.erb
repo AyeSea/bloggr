@@ -1,16 +1,55 @@
-<h1><%= @user.first_name %> <%= @user.last_name %>'s Page</h1>
+<h1><%= @user.full_name %>'s Page</h1>
 
-<h3>Friends</h3>
+<!-- User's Posts Section -->
+<div class="container">
 
-<% @user.friends.each do |friend| %>
-	<p><%= friend.first_name %> <%= friend.last_name %></p>
-	
-	<p><%= link_to "View Profile", friend %></p>
+	<h3><%= @user.full_name %>'s Wall</h3>
 
-	<!-- User can only remove friends for their own account -->
+	<!-- New Post Section (can only create a post on your own wall) -->
 	<% if @user == current_user %>
-	<p><%= link_to "Remove Friend", friendship_path(friend_id: friend), method: :delete %></p>
-	<% end %>
-<% end %>
+		<%= form_for([@user, @post]) do |f| %>
+			<%= f.label :content %>
+			<%= f.text_area :content, size: "50x10" %>
 
-<%= link_to "Find more friends!", users_path %>
+			<%= f.submit "Create Post!" %>
+			<%= f.hidden_field :id, value: @user %>
+		<% end %>
+
+	<% end %>
+
+	<!-- List of User's Posts -->
+	<% @user.posts.each do |post| %>
+		<!-- Hiding @post which is a blank post instantiated for use in the new post section above -->
+		<% unless @post == post %>
+
+			<p>Post: <%= post.content %></p>
+			<p>Date: <%= post.created_at %></p>
+
+			<!-- current user can delete his/her posts -->
+			<% if @user == current_user %>
+			<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
+			<% end %>
+
+		<% end %>
+
+	<% end %>
+
+</div>
+
+<!-- User's Friends Section -->
+<div class="container">
+	<h3>Friends</h3>
+
+	<% @user.friends.each do |friend| %>
+		<p><%= friend.first_name %> <%= friend.last_name %></p>
+		
+		<p><%= link_to "View Profile", friend %></p>
+
+		<!-- User can only remove friends for their own account -->
+		<% if @user == current_user %>
+		<p><%= link_to "Remove Friend", friendship_path(friend_id: friend), method: :delete %></p>
+		<% end %>
+	<% end %>
+
+	<%= link_to "Find more friends!", users_path %>
+</div>

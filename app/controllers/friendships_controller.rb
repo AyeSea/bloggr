@@ -39,7 +39,7 @@ class FriendshipsController < ApplicationController
 			#delete friendship. this means that you accepted the friendship. works for both accepted and not accepted friend requests.
 			@friendship = current_user.accepting_friendships.where("requester_id = ?", @friend.id)
 			@friendship.destroy(@friendship)
-		else
+		elsif
 			#delete friendship. this means that you requested the friendship. works for both accepted and not accepted friend requests.
 			@friendship = current_user.requesting_friendships.where("accepter_id = ?", @friend.id)
 			@friendship.destroy(@friendship)

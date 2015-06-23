@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	attr_accessor :full_name
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :requesters, through: :accepting_friendships
   has_many :accepters, through: :requesting_friendships
+
+  has_many :posts
 
 	validates :first_name, presence: true
 
@@ -52,6 +55,10 @@ class User < ActiveRecord::Base
 		end
 
 		friends
+	end
+
+	def full_name
+		@full_name = "#{self.first_name} #{self.last_name}"
 	end
 
 	private
