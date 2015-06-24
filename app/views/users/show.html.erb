@@ -1,4 +1,6 @@
-<h1><%= @user.full_name %>'s Page</h1>
+<div class="container">
+	<h1><%= @user.full_name %>'s Page</h1>
+</div>
 
 <!-- User's Posts Section -->
 <div class="container">
@@ -8,8 +10,8 @@
 	<!-- New Post Section (can only create a post on your own wall) -->
 	<% if @user == current_user %>
 		<%= form_for([@user, @post]) do |f| %>
-			<%= f.label :content %>
-			<%= f.text_area :content, size: "50x10" %>
+			<%= f.label :content %><br>
+			<%= f.text_area :content, size: "50x10" %><br>
 
 			<%= f.submit "Create Post!" %>
 			<%= f.hidden_field :id, value: @user %>
@@ -24,6 +26,15 @@
 
 			<p>Post: <%= post.content %></p>
 			<p>Date: <%= post.created_at %></p>
+			<p><%= pluralize(post.likes.count, "like") %></p>
+
+			<!-- add a like if you haven't already liked this post -->
+			<% unless post.likes.find_by(user_id: current_user.id) %>
+			<p class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></p>
+			<!-- unlike this post if you've liked it already -->
+			<% else %>
+			<p class="btn btn-default"><%= link_to "Unlike", like_path(post_id: post.id), method: :delete %></p>
+			<% end %>
 
 			<!-- current user can delete his/her posts -->
 			<% if @user == current_user %>
