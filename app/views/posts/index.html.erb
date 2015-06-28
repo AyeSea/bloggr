@@ -1,0 +1,78 @@
+<!-- User Timeline Page -->
+<div class="container">
+	<h1><%= @user.full_name %></h1>
+</div>
+
+<div class="container">
+	<% @posts.each do |post| %>
+		
+		<!-- used during development to see what objects were created:
+		<p><%= post.inspect %></p> 
+		-->
+
+		<div class="panel panel-default">
+				
+			<div class="panel-body">
+				<p>Post: <%= post.content %></p>
+				<p>Date: <%= post.created_at %></p>
+				<p><%= pluralize(post.likes.count, "like") %></p>
+
+				<!-- add a like if you haven't already liked this post -->
+				<% unless post.likes.find_by(user_id: current_user.id) %>
+				<div class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></div>
+				<!-- unlike this post if you've liked it already -->
+				<% else %>
+				<!-- chose to provide a default id vlaue of 1, as the route requires a non-nil value for the id parameter.
+					   note, the actual post is identified by the controller's before actions -->				
+				<div class="btn btn-default"><%= link_to "Unlike", like_path(id: 1, post_id: post.id), method: :delete %></div>
+				<% end %>
+
+				<!-- current user can delete his/her posts -->
+				<% if post.user == current_user %>
+				<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
+				<% end %>
+			</div>
+				
+			<!-- List of Post's Comments -->
+			<div class="panel-body-2">
+				<% post.comments.each do |comment| %>
+					<p>Commenter: <%= comment.user.full_name %></p>
+					<p>Content: <%= comment.content %></p>
+					<p>Created On: <%= comment.created_at %></p>
+					<p><%= pluralize(comment.likes.count, "like") %></p>
+
+					<!-- add a like if you haven't already liked this comment -->
+					<% unless comment.likes.find_by(user_id: current_user.id) %>
+					<div class="btn btn-default"><%= link_to "Like", likes_path(comment_id: comment.id), method: :post %></div>
+					<!-- unlike this comment if you've liked it already -->
+					<% else %>
+					<!-- chose to provide a default id vlaue of 1, as the route requires a non-nil value for the id parameter.
+					     note, the actual comment is identified by the controller's before actions -->
+					<div class="btn btn-default"><%= link_to "Unlike", like_path(id: 1, comment_id: comment.id), method: :delete %></div>
+					<% end %>
+
+					<!-- allow comment creator to delete his/her comment -->
+					<% if comment.user == current_user %>
+					<p><%= link_to "Remove Comment", comment_path(comment), method: :delete %></p>
+					<% end %>
+				<% end %>
+			</div>
+			
+			<!-- Section to Add Comments -->
+			<div class="panel-body-2">
+				<%= form_for post.comments.build do |f| %>
+					<%= f.label :content %><br>
+					<%= f.text_area :content, size: "30x10" %><br>
+							
+					<!-- hidden field to identify post and commenting user -->
+					<%= f.hidden_field :post_id, value: post.id %>
+					<%= f.hidden_field :user_id, value: current_user.id %>
+
+					<%= f.submit "Add Comment", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+
+		</div>
+
+	<% end %>
+</div>

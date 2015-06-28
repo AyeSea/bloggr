@@ -14,14 +14,14 @@ class LikesController < ApplicationController
 			flash[:error] = "Error! Unable to like!"
 		end
 
-		redirect_to user_path(@likeable_user)
+		redirect_to :back
 	end
 
 	def destroy
 		@like.destroy
 		flash[:success] = "Unliked!"
 
-		redirect_to user_path(@likeable_user)
+		redirect_to :back
 	end
 
 	private

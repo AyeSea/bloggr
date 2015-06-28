@@ -28,7 +28,7 @@ class FriendshipsController < ApplicationController
 		
 		@friendship.update_attribute(:accepted, true)
 		flash[:success] = "Added #{@friend.first_name} #{@friend.last_name}!"
-		redirect_to @friend
+		redirect_to user_posts_path(@friend)
 	end
 
 	#Reject a friend request (i.e. pending friendship) or remove an existing friendship.

@@ -7,10 +7,10 @@ class CommentsController < ApplicationController
 
 		if @comment.save
 			flash[:success] = "Comment added!"
-			redirect_to @user
+			redirect_to :back
 		else
 			flash[:error] = "Error! Comment could not be added!"
-			render @user
+			render :back
 		end
 	end
 
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 
 		@comment.destroy
 		flash[:success] = "Comment removed!"
-		redirect_to @user
+		redirect_to :back
 	end
 
 	private

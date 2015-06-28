@@ -1,5 +1,7 @@
+<!-- User Home Page -->
 <div class="container">
-	<h1><%= @user.full_name %>'s Page</h1>
+	<h1>Welcome, <%= @user.full_name %>!</h1>
+	<h2><%= link_to "Timeline", user_posts_path(@user) %></h2>
 </div>
 
 <!-- User's Posts Section -->
@@ -42,7 +44,7 @@
 					<% end %>
 
 					<!-- current user can delete his/her posts -->
-					<% if @user == current_user %>
+					<% if post.user == current_user %>
 					<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
 					<% end %>
 				</div>
@@ -99,7 +101,7 @@
 	<% @user.friends.each do |friend| %>
 		<p><%= friend.full_name %></p>
 		
-		<p><%= link_to "View Profile", friend %></p>
+		<p><%= link_to "View Profile", user_posts_path(user_id: friend) %></p>
 
 		<!-- User can only remove friends for their own account -->
 		<% if @user == current_user %>
