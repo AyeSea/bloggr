@@ -13,33 +13,68 @@
 			<%= f.label :content %><br>
 			<%= f.text_area :content, size: "50x10" %><br>
 
-			<%= f.submit "Create Post!" %>
+			<%= f.submit "Create Post!", class: "btn btn-primary" %>
+
 			<%= f.hidden_field :id, value: @user %>
 		<% end %>
 
 	<% end %>
-
+	
 	<!-- List of User's Posts -->
+	<h3>Posts</h3>
 	<% @user.posts.each do |post| %>
 		<!-- Hiding @post which is a blank post instantiated for use in the new post section above -->
 		<% unless @post == post %>
+			
+			<div class="panel panel-default">
+				
+				<div class="panel-body">
+					<p>Post: <%= post.content %></p>
+					<p>Date: <%= post.created_at %></p>
+					<p><%= pluralize(post.likes.count, "like") %></p>
 
-			<p>Post: <%= post.content %></p>
-			<p>Date: <%= post.created_at %></p>
-			<p><%= pluralize(post.likes.count, "like") %></p>
+					<!-- add a like if you haven't already liked this post -->
+					<% unless post.likes.find_by(user_id: current_user.id) %>
+					<div class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></div>
+					<!-- unlike this post if you've liked it already -->
+					<% else %>
+					<div class="btn btn-default"><%= link_to "Unlike", like_path(post_id: post.id), method: :delete %></div>
+					<% end %>
 
-			<!-- add a like if you haven't already liked this post -->
-			<% unless post.likes.find_by(user_id: current_user.id) %>
-			<p class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></p>
-			<!-- unlike this post if you've liked it already -->
-			<% else %>
-			<p class="btn btn-default"><%= link_to "Unlike", like_path(post_id: post.id), method: :delete %></p>
-			<% end %>
+					<!-- current user can delete his/her posts -->
+					<% if @user == current_user %>
+					<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
+					<% end %>
+				</div>
+				
+				<!-- List of Post's Comments -->
+				<div class="panel-body-2">
+					<% post.comments.each do |comment| %>
+						<p>Commenter: <%= comment.user.full_name %></p>
+						<p>Content: <%= comment.content %></p>
+						<p>Created On: <%= comment.created_at %></p>
+						<!-- allow comment creator to delete his/her comment -->
+						<% if comment.user == current_user %>
+						<p><%= link_to "Remove Comment", comment_path(comment), method: :delete %></p>
+						<% end %>
+					<% end %>
+				</div>
+				
+				<!-- Section to Add Comments -->
+				<div class="panel-body-2">
+					<%= form_for @comment do |f| %>
+						<%= f.label :content %><br>
+						<%= f.text_area :content, size: "30x10" %><br>
+							
+						<!-- hidden field to identify post and commenting user -->
+						<%= f.hidden_field :post_id, value: post.id %>
+						<%= f.hidden_field :user_id, value: current_user.id %>
 
-			<!-- current user can delete his/her posts -->
-			<% if @user == current_user %>
-			<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
-			<% end %>
+						<%= f.submit "Add Comment", class: "btn btn-primary" %>
+					<% end %>
+				</div>
+
+			</div>
 
 		<% end %>
 
@@ -52,7 +87,7 @@
 	<h3>Friends</h3>
 
 	<% @user.friends.each do |friend| %>
-		<p><%= friend.first_name %> <%= friend.last_name %></p>
+		<p><%= friend.full_name %></p>
 		
 		<p><%= link_to "View Profile", friend %></p>
 

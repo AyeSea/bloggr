@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   has_many :requesters, through: :accepting_friendships
   has_many :accepters, through: :requesting_friendships
 
-  has_many :posts
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 	validates :first_name, presence: true
 

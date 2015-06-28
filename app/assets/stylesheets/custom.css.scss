@@ -42,3 +42,7 @@ $clonebook-blue: #3a5795;
 	}
 }
 
+.panel-body-2 {
+	@extend .panel-body;
+	margin-left: 10px;
+}
