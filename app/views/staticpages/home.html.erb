@@ -1,13 +1,15 @@
 <div class="container-fluid jumbotron">
 	<div class="container">
+		
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-4">
+				<h2>A place to connect with people.</h2>
+			</div>
+		</div>
+
 		<div class="row">
 
-			<!-- Quick Info -->
-			<div class="col-xs-6 quick-info">
-				<h2>Connect with friends and the world around you on Clonebook.</h2>
-			</div>
-
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-xs-offset-5">
 				<!-- move signup form into partial and render it here -->
 				<h2>Sign up</h2>
 				<%= form_for(:user, :url => registration_path(:user)) do |f| %>

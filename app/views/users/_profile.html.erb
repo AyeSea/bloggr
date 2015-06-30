@@ -1,6 +1,7 @@
 <!-- User Profile Info -->
 <div class="container">
 	<h3>Profile</h3>
+	<%= gravatar_for @user %>
 	<p>Name: <%= @user.full_name %></p>
 	<p>Birthday: <%= @user.birthday.strftime("%m-%d-%Y") %></p>
 	<p>Gender: <%= @user.full_gender %></p>
