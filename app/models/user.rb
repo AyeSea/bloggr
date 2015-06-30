@@ -63,6 +63,14 @@ class User < ActiveRecord::Base
 		@full_name = "#{self.first_name} #{self.last_name}"
 	end
 
+	def full_gender
+		if self.gender == "M"
+			@full_gender = "Male"
+		else
+			@full_gender = "Female"
+		end
+	end
+
 	private
 		def capitalize_fields
 			self.first_name.capitalize!

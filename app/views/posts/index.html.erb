@@ -3,6 +3,11 @@
 	<h1><%= @user.full_name %></h1>
 </div>
 
+<!-- User Profile Info -->
+<%= render 'users/profile' %>
+
+<!-- Posts (user and user's friends) -->
+
 <div class="container">
 	<% @posts.each do |post| %>
 		

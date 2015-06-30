@@ -1,8 +1,11 @@
 <!-- User Home Page -->
 <div class="container">
 	<h1>Welcome, <%= @user.full_name %>!</h1>
-	<h2><%= link_to "Timeline", user_posts_path(@user) %></h2>
+	<h3><%= link_to "Timeline", user_posts_path(@user) %></h3>
 </div>
+
+<!-- User Profile Info -->
+<%= render 'users/profile' %>
 
 <!-- User's Posts Section -->
 <div class="container">

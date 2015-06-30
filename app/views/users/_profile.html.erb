@@ -1,0 +1,9 @@
+<!-- User Profile Info -->
+<div class="container">
+	<h3>Profile</h3>
+	<p>Name: <%= @user.full_name %></p>
+	<p>Birthday: <%= @user.birthday.strftime("%m-%d-%Y") %></p>
+	<p>Gender: <%= @user.full_gender %></p>
+	<p>Email: <%= @user.email %></p>
+	<p><%= link_to "Update Profile Info", edit_user_registration_path(@user) %></p>
+</div>
