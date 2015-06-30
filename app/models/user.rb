@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
 	validates :birthday, presence: true
 
-	validates :gender, presence: true, format: { with: /[mMfF]/, message: ": Select (M)ale or (F)emale." }
+	validates :gender, presence: true, length: { maximum: 1 }, format: { with: /[FM]/ }
 
 	def friends
 		self.friends_as_accepter + self.friends_as_requester

@@ -36,15 +36,17 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <!-- Add birthday dropdown here -->
   <div class="field">
     <%= f.label :birthday %><br />
     <%= f.date_field :birthday %>
   </div>
 
   <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.label :gender %>
+    <%= f.label :gender, "Female" %>
+    <%= f.radio_button :gender, "F" %>
+    <%= f.label :gender, "Male" %>
+    <%= f.radio_button :gender, "M" %>
   </div>
 
   <div class="actions">
