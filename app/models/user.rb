@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   before_save :capitalize_fields
 
@@ -68,6 +69,21 @@ class User < ActiveRecord::Base
 			@full_gender = "Male"
 		else
 			@full_gender = "Female"
+		end
+	end
+
+	def self.from_omniauth(auth)
+		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.first_name = auth.info.first_name
+			user.last_name = auth.info.last_name
+			user.email = auth.info.email
+			user.email_confirmation = auth.info.email
+			user.password = Devise.friendly_token[0, 20]
+			user.gender = auth.extra.raw_info.gender[0].upcase
+			#Users logging in through Facebook are 13 or over (as per Facebook's Terms and Data Policy)
+			#and eligible to sign up for and use Clonebook.
+			#Allow users logged in through Facebook to update their birthdays if they choose to do so.
+			user.birthday = Date.today
 		end
 	end
 

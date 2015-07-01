@@ -20,7 +20,7 @@
 
   <div class="field">
     <%= f.label :email_confirmation %><br>
-    <%= f.email_field :email_confirmation %><br>
+    <%= f.email_field :email_confirmation, value: resource.email %><br>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

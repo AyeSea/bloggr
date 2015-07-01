@@ -14,11 +14,11 @@ class FriendshipsController < ApplicationController
 		@friendship = current_user.requesting_friendships.build(accepter_id: params[:accepter_id])
 		if @friendship.save
 			flash[:success] = "Friend request sent!"
-			redirect_to current_user
 		else
 			flash[:error] = "Error! Friend request could not be sent!"
-			redirect_to users_path
 		end
+
+		redirect_to users_path
 	end
 
 	#Accept a friend request (i.e. pending friendship) changes the value of the accepted column to true.

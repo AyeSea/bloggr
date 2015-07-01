@@ -51,6 +51,11 @@
 			</div>
 
 		</div>
+		
+		<!-- Signin w/ Facebook using Omniauth -->
+		<div>
+			<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>	
+		</div>
 
 	<% end %>
 		
