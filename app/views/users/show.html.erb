@@ -1,7 +1,7 @@
 <!-- User Home Page -->
 <div class="container">
 	<h1>Welcome, <%= @user.full_name %>!</h1>
-	<h3><%= link_to "Timeline", user_posts_path(@user) %></h3>
+	<h3><%= link_to "Public Page", user_posts_path(@user) %></h3>
 </div>
 
 <!-- User Profile Info -->
@@ -12,105 +12,14 @@
 
 	<h3><%= @user.full_name %>'s Wall</h3>
 
-	<!-- New Post Section (can only create a post on your own wall) -->
-	<% if @user == current_user %>
-		<%= form_for([@user, @post]) do |f| %>
-			<%= f.label :content %><br>
-			<%= f.text_area :content, size: "50x10" %><br>
-
-			<%= f.submit "Create Post!", class: "btn btn-primary" %>
-
-			<%= f.hidden_field :id, value: @user %>
-		<% end %>
-
-	<% end %>
+	<!-- New Post Section -->
+	
+	<%= render 'posts/post_form' %>
 	
 	<!-- List of User's Posts -->
-	<h3>Posts</h3>
-	<% @user.posts.each do |post| %>
-		<!-- Hiding @post which is a blank post instantiated for use in the new post section above -->
-		<% unless @post == post %>
-			
-			<div class="panel panel-default">
-				
-				<div class="panel-body">
-					<p>Post: <%= post.content %></p>
-					<p>Date: <%= post.created_at %></p>
-					<p><%= pluralize(post.likes.count, "like") %></p>
-
-					<!-- add a like if you haven't already liked this post -->
-					<% unless post.likes.find_by(user_id: current_user.id) %>
-					<div class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></div>
-					<!-- unlike this post if you've liked it already -->
-					<% else %>
-					<div class="btn btn-default"><%= link_to "Unlike", like_path(post_id: post.id), method: :delete %></div>
-					<% end %>
-
-					<!-- current user can delete his/her posts -->
-					<% if post.user == current_user %>
-					<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
-					<% end %>
-				</div>
-				
-				<!-- List of Post's Comments -->
-				<div class="panel-body-2">
-					<% post.comments.each do |comment| %>
-						<p>Commenter: <%= comment.user.full_name %></p>
-						<p>Content: <%= comment.content %></p>
-						<p>Created On: <%= comment.created_at %></p>
-						<p><%= pluralize(comment.likes.count, "like") %></p>
-
-						<!-- add a like if you haven't already liked this comment -->
-						<% unless comment.likes.find_by(user_id: current_user.id) %>
-						<div class="btn btn-default"><%= link_to "Like", likes_path(comment_id: comment.id), method: :post %></div>
-						<!-- unlike this comment if you've liked it already -->
-						<% else %>
-						<div class="btn btn-default"><%= link_to "Unlike", like_path(comment_id: comment.id), method: :delete %></div>
-						<% end %>
-
-						<!-- allow comment creator to delete his/her comment -->
-						<% if comment.user == current_user %>
-						<p><%= link_to "Remove Comment", comment_path(comment), method: :delete %></p>
-						<% end %>
-					<% end %>
-				</div>
-				
-				<!-- Section to Add Comments -->
-				<div class="panel-body-2">
-					<%= form_for @comment do |f| %>
-						<%= f.label :content %><br>
-						<%= f.text_area :content, size: "30x10" %><br>
-							
-						<!-- hidden field to identify post and commenting user -->
-						<%= f.hidden_field :post_id, value: post.id %>
-						<%= f.hidden_field :user_id, value: current_user.id %>
-
-						<%= f.submit "Add Comment", class: "btn btn-primary" %>
-					<% end %>
-				</div>
-
-			</div>
-
-		<% end %>
-
-	<% end %>
+	<%= render 'posts/timeline_posts' %>
 
 </div>
 
 <!-- User's Friends Section -->
-<div class="container">
-	<h3>Friends</h3>
-
-	<% @user.friends.each do |friend| %>
-		<p><%= friend.full_name %></p>
-		
-		<p><%= link_to "View Profile", user_posts_path(user_id: friend) %></p>
-
-		<!-- User can only remove friends for their own account -->
-		<% if @user == current_user %>
-		<p><%= link_to "Remove Friend", friendship_path(friend_id: friend), method: :delete %></p>
-		<% end %>
-	<% end %>
-
-	<%= link_to "Find more friends!", users_path %>
-</div>
+<%= render 'friendships/friends' %>

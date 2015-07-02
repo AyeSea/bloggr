@@ -1,0 +1,14 @@
+<div>
+	<!-- Users can post on their own walls -->
+	<% if @user == current_user %>
+		<%= form_for([@user, @post]) do |f| %>
+			<%= f.label :content %><br>
+			<%= f.text_area :content, size: "50x10" %><br>
+
+			<%= f.submit "Create Post!", class: "btn btn-primary" %>
+
+			<%= f.hidden_field :id, value: @user %>
+		<% end %>
+	<% end %>
+	
+</div>

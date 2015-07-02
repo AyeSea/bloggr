@@ -1,0 +1,46 @@
+<!-- List of Posts:
+		 1. When used in the user#show view (landing page on signin), @posts is the posts for the given user and his/her friends.
+		 2. When used in the posts#index view (user's public profile page), @posts is the posts for the given user only.
+-->
+
+<div class="container">
+	<% @posts.each do |post| %>
+		
+		<!-- used during development to see what objects were created:
+		<p><%= post.inspect %></p> 
+		-->
+
+		<div class="panel panel-default">
+				
+			<div class="panel-body">
+				<p>Author: <%= post.user.full_name %></p>
+				<p>Post: <%= post.content %></p>
+				<p>Date: <%= post.created_at %></p>
+				<p><%= pluralize(post.likes.count, "like") %></p>
+
+				<!-- add a like if you haven't already liked this post -->
+				<% unless post.likes.find_by(user_id: current_user.id) %>
+				<div class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></div>
+				<!-- unlike this post if you've liked it already -->
+				<% else %>
+				<!-- chose to provide a default id vlaue of 1, as the route requires a non-nil value for the id parameter.
+					   note, the actual post is identified by the controller's before actions -->				
+				<div class="btn btn-default"><%= link_to "Unlike", like_path(id: 1, post_id: post.id), method: :delete %></div>
+				<% end %>
+
+				<!-- current user can delete his/her posts -->
+				<% if post.user == current_user %>
+				<p><%= link_to "Remove Post", user_post_path(user_id: @user, id: post), method: :delete %></p>
+				<% end %>
+			</div>
+			
+			<!-- List of Post's Comments -->
+			<%= render 'comments/post_comments', post: post %>
+			
+			<!-- Section to Add Comments -->
+			<%= render 'comments/comment_form', post: post %>
+
+		</div>
+
+	<% end %>
+</div>

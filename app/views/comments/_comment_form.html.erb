@@ -1,0 +1,12 @@
+<div class="panel-body-2">
+	<%= form_for post.comments.build do |f| %>
+		<%= f.label :content %><br>
+		<%= f.text_area :content, size: "30x10" %><br>
+				
+		<!-- hidden field to identify post and commenting user -->
+		<%= f.hidden_field :post_id, value: post.id %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+
+		<%= f.submit "Add Comment", class: "btn btn-primary" %>
+	<% end %>
+</div>

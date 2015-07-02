@@ -9,27 +9,21 @@
 			<!-- if there is a pending request sent by current user, show as pending acceptance -->
 			<% if current_user.accepters.include?(user) %>
 
-			<button class="btn btn-default">
+			<button class="btn btn-warning">
 				Pending Acceptance
 			</button>
 			
 			<!-- elsif there is a pending request sent to current_user, show confirm and reject buttons -->
 			<% elsif current_user.requesters.include?(user) %>
 
-			<button class="btn btn-default">
-				<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch %>
-			</button>
+				<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch, class: "btn btn-success" %>
 
-			<button class="btn btn-default">
-				<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete %>
-			</button>
+			<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
 
 			<!-- else (i.e. if there is no pending friendship request) -->
 			<% else %>
 
-			<button class="btn btn-default">
-				<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post %>
-			</button>
+			<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post, class: "btn btn-primary" %>
 
 			<% end %>
 
