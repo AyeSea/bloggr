@@ -1,5 +1,9 @@
 class UserMailer < ApplicationMailer
-	default from: 'notifications@example.com'
+	if Rails.env.development? || Rails.env.test?
+		default from: 'notifications@example.com'
+	else
+		default from: ENV['SENDGRID_USERNAME']
+	end
 
 	def welcome_email(user)
 		@user = user

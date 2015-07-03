@@ -37,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
 
         #Tell UserMailer to send welcome email.
-        UserMailer.welcome_email(resource).deliver_now
+        UserMailer.welcome_email(resource).deliver
 
         #Signin user after succesful signup.
         sign_in(resource_name, resource)
