@@ -32,7 +32,13 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
+        
+        #Sign up user.
         sign_up(resource_name, resource)
+
+        #Tell UserMailer to send welcome email.
+        UserMailer.welcome_email(resource).deliver_now
+
         #Signin user after succesful signup.
         sign_in(resource_name, resource)
         #Redirect user to their profile (show) page.

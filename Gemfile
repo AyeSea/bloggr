@@ -31,6 +31,9 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 
+#Use Letter Opener to preview emails in browser.
+gem 'letter_opener', group: :development
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
