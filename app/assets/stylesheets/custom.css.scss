@@ -9,7 +9,7 @@ $hover-blue: #23527c;
 
 /* Header */
 .site-header {
-	height: 82px;
+	height: 100%;
 	background-color: $header-background;
 	color: $header-text;
 	border-bottom: 1px solid #030;
@@ -32,6 +32,8 @@ $hover-blue: #23527c;
 	.logo {
 		font-size: 45px;
 		font-weight: bold;
+		display: inline-block;
+		margin-top: 5px;
 	}
 
 	.logo:hover {
@@ -50,6 +52,10 @@ $hover-blue: #23527c;
 	.btn:hover {
 		color: #fff;
 		background-color: $hover-blue;
+	}
+
+	.header-right-col {
+		margin-top: -6.5px;
 	}
 
 	.form-group {
@@ -93,4 +99,16 @@ $hover-blue: #23527c;
 .panel-body-2 {
 	@extend .panel-body;
 	margin-left: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1198px) {
+
+	.site-header {
+
+		.logo {
+			margin-top: 0;
+		}
+
+	}
 }
