@@ -7,6 +7,16 @@ $header-footer-text: #fff;
 $button-text: #aaa;
 $hover-blue: #6586a3;
 
+/* Flash Messages */
+
+.container-flash {
+	padding: 0;
+}
+
+.alert {
+	margin: 0;
+}
+
 /* Header */
 .site-header {
 	height: 100%;

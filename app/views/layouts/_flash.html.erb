@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid container-flash">
 
 	<% flash.each do |type, msg| %>
-		<div class="alert alert-<%= type %>">
+		<div class="alert <%= bootstrap_flash_class(type) %>">
 			<%= msg %>
 		</div>
 	<% end %>
