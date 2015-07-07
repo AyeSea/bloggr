@@ -4,7 +4,7 @@
 /* Global Variables */
 $header-footer-background: #2e2e1f;
 $header-footer-text: #fff;
-$button-text: #555;
+$button-text: #aaa;
 $hover-blue: #6586a3;
 
 /* Header */
@@ -87,6 +87,25 @@ $hover-blue: #6586a3;
 	background-position: center;
 	color: #fff;
 	margin-bottom: 0;
+	min-height: 900px;
+	max-height: 1800px;
+	
+
+	.jumbotron-left-col {
+
+		.strong-em {
+			font-weight: bold;
+			font-style: italic;
+			color: $button-text;
+		}
+
+		.strong-em:hover {
+			font-size: 40px;
+			color: $hover-blue;
+			transition: all 0.3s ease;
+		}
+
+	}
 }
 
 .signup-form {
