@@ -1,7 +1,10 @@
 class StaticpagesController < ApplicationController
-	before_filter :redirect_loggedin_user
+	before_filter :redirect_loggedin_user, only: :home
 
   def home
+  end
+
+  def about
   end
 
   private

@@ -1,10 +1,14 @@
 <footer class="container-fluid site-footer">
 
-	<div class="container">
+	<div class="container footer-links">
 		<ul>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Contribute to this Project</a></li>
-			<li><a href="#">FAQs</a></li>
+			<li><%= link_to "Sign In", new_user_session_path %></li>
+			<li><%= link_to "Sign Up", new_user_registration_path %></li>
+			<li><%= link_to "About", about_path %></li>
+		</ul>
+
+		<ul>
+			<li><%= link_to "AyeSea's GitHub", "http://github.com/AyeSea" %></li>
 		</ul>
 	</div>
 

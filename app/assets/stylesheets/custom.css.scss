@@ -2,16 +2,16 @@
 @import "bootstrap";
 
 /* Global Variables */
-$header-background: #2e2e1f;
-$header-text: #fff;
+$header-footer-background: #2e2e1f;
+$header-footer-text: #fff;
 $button-text: #555;
-$hover-blue: #23527c;
+$hover-blue: #6586a3;
 
 /* Header */
 .site-header {
 	height: 100%;
-	background-color: $header-background;
-	color: $header-text;
+	background-color: $header-footer-background;
+	color: $header-footer-text;
 	border-bottom: 1px solid #030;
 	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);
 	
@@ -20,13 +20,14 @@ $hover-blue: #23527c;
 	}
 
 	a {
-		color: $header-text;
+		color: $header-footer-text;
 	}
 
 	a:hover {
 		text-decoration: none;
 		color: $hover-blue;
 		transition: all 0.5s ease;
+		font-weight: bold;
 	}
 
 	.logo {
@@ -45,13 +46,13 @@ $hover-blue: #23527c;
 		color: $button-text;
 	  margin-top: 25px;
 	  margin-left: 5px;
-	  transition: all 0.5s ease;
 	  border: none;
 	}
 
 	.btn:hover {
 		color: #fff;
 		background-color: $hover-blue;
+		font-weight: bold;
 	}
 
 	.header-right-col {
@@ -78,28 +79,71 @@ $hover-blue: #23527c;
 
 }
 
+/* Body */
+.jumbotron {
+	background-image: url(/assets/city.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	margin-bottom: 0;
+}
+
+.signup-form {
+
+	input {
+		color: #000;
+	}
+
+	label:hover {
+		font-size: 18px;
+	}
+
+	.btn:hover {
+		background-color: $hover-blue;
+		transition: all 0.5s ease;
+	}
+}
 
 /* Footer */
 .site-footer {
-	background-color: #fff;
-	color: #3b5998;
+	background-color: $header-footer-background;
+	color: $header-footer-text;
+	height: 100%;
 	
 	ul {
 		padding: 0;
+		margin-top: 10px;
 		
 		li {
 			list-style-type: none;
 			display: inline-block;
 			margin-right: 5px;
+
+			a {
+				color: $header-footer-text;
+			}
+
+			a:hover {
+				text-decoration: none;
+				color: $hover-blue;
+				font-weight: bold;
+				transition: all 0.5s ease;
+			}
 		}
 	}
 }
+
+
+
 
 /* Panel Body 2 (class for comments nested in posts) */
 .panel-body-2 {
 	@extend .panel-body;
 	margin-left: 10px;
 }
+
+
 
 /* Media Queries */
 @media screen and (max-width: 1198px) {

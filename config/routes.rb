@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'staticpages#home'
 
+  get '/about' => 'staticpages#about'
+
   resources :users do
     resources :posts
   end
