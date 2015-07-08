@@ -1,31 +1,13 @@
 <div class="container">
 	<h1>All Users</h1>
 	
-	<% @non_friends.each do |user| %>
+	<% @users.each do |user| %>
 
 		<div class="panel panel-default friend-menu">
 			<h3><%= link_to user.full_name, user_posts_path(user), class: "full-name" %></h3>
-		
-			<!-- if there is a pending request sent by current user, show as pending acceptance -->
-			<% if current_user.accepters.include?(user) %>
-
-			<button class="btn btn-warning">
-				Pending Acceptance
-			</button>
 			
-			<!-- elsif there is a pending request sent to current_user, show confirm and reject buttons -->
-			<% elsif current_user.requesters.include?(user) %>
-
-				<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch, class: "btn btn-success" %>
-
-			<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
-
-			<!-- else (i.e. if there is no pending friendship request) -->
-			<% else %>
-
-			<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post, class: "btn btn-primary" %>
-
-			<% end %>
+			<!-- relevant friend buttons depending on friendship status (existing friend, pending request, no request) -->
+			<%= render 'friendships/friend_buttons', user: user %>
 
 		</div>
 

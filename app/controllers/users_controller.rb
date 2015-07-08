@@ -7,9 +7,8 @@ class UsersController < ApplicationController
 	#restrict home page to that page's owner only
 
 	def index
-		#Show all users who are not your friends.
-		@non_friends = User.all - current_user.friends
-		@non_friends.delete(current_user)
+		#Show all users
+		@users = User.all
 	end
 
 	def show

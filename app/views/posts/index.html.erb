@@ -2,7 +2,13 @@
 <div class="container-fluid body-content">
 
 	<div class="container">
-		<h1><%= @user.full_name %></h1>
+
+		<h1 class="pull-left"><%= @user.full_name %></h1>
+
+		<!-- Show friend buttons -->
+		<div class="pull-right friend-button-box">
+			<%= render 'friendships/friend_buttons', user: @user %>
+		</div>
 	</div>
 
 	<!-- Profile Info -->
