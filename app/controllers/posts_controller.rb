@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
+	include ApplicationHelper
+
 	before_action :identify_user, only: [:index, :create, :destroy]
 
 	def index
-		@posts = @user.posts
 		#Post instance needed for the post_form partial.
 		@post = Post.new
+		#Show posts for user and all of user's friends.
+		@posts = ordered_posts(@user)
 	end
 
 	def create
