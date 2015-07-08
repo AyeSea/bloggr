@@ -7,5 +7,9 @@
 <!-- User Profile Info -->
 <%= render 'users/profile' %>
 
+<!-- Posts (for user and user's friends) -->
+<%= content_for :header_title, "My Feed" %>
+<%= render 'posts/timeline_posts' %>
+
 <!-- User's Friends Section -->
 <%= render 'friendships/friends' %>

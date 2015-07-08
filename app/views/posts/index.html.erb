@@ -11,8 +11,8 @@
 	<!-- New Post Section -->
 	<%= render 'posts/post_form' %>
 
-	<!-- Posts (user and user's friends) -->
-
+	<!-- Posts (user's posts only) -->
+	<%= content_for :header_title, "#{@user.full_name}'s Posts" %>
 	<%= render 'posts/timeline_posts' %>
 
 </div>

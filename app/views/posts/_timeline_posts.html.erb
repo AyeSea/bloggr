@@ -5,7 +5,7 @@
 
 <div class="container">
 
-	<h3><%= @user.first_name %>'s Posts</h3>
+	<h3><%= yield(:header_title) %></h3>
 
 	<% @posts.each do |post| %>
 		
