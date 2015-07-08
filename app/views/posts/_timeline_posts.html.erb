@@ -7,6 +7,10 @@
 
 	<h3><%= yield(:header_title) %></h3>
 
+	<% if @posts.empty? %>
+		<p><%= @user.first_name %> hasn't posted yet!</p>
+	<% end %>
+
 	<% @posts.each do |post| %>
 		
 		<!-- used during development to see what objects were created:
