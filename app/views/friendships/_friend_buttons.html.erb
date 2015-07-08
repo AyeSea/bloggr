@@ -1,29 +1,33 @@
 <!-- if user is already current_user's friend -->
-<% if current_user.friends.include?(user) %>
+<% unless current_user == user %>
 
-	<%= link_to "Remove Friend", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
+	<% if current_user.friends.include?(user) %>
 
-<!-- else (if user is not current_user's friend) -->
-<% else %>
+		<%= link_to "Remove Friend", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
 
-	<!-- if there is a pending request sent by current user, show as pending acceptance -->
-	<% if current_user.accepters.include?(user) %>
-
-	<button class="btn btn-warning">
-		Pending Acceptance
-	</button>
-	
-	<!-- elsif there is a pending request sent to current_user, show confirm and reject buttons -->
-	<% elsif current_user.requesters.include?(user) %>
-
-	<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch, class: "btn btn-success" %>
-
-	<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
-
-	<!-- else (if you are not friends and neither of you has sent a friend request to the other) -->
+	<!-- else (if user is not current_user's friend) -->
 	<% else %>
 
-	<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post, class: "btn btn-primary" %>
+		<!-- if there is a pending request sent by current user, show as pending acceptance -->
+		<% if current_user.accepters.include?(user) %>
+
+		<button class="btn btn-warning">
+			Pending Acceptance
+		</button>
+		
+		<!-- elsif there is a pending request sent to current_user, show confirm and reject buttons -->
+		<% elsif current_user.requesters.include?(user) %>
+
+		<%= link_to "Confirm", friendship_path(requester_id: user, id: current_user), method: :patch, class: "btn btn-success" %>
+
+		<%= link_to "Delete Request", friendship_path(friend_id: user, id: current_user), method: :delete, class: "btn btn-danger" %>
+
+		<!-- else (if you are not friends and neither of you has sent a friend request to the other) -->
+		<% else %>
+
+		<%= link_to "Add Friend", friendships_path(accepter_id: user), method: :post, class: "btn btn-primary" %>
+
+		<% end %>
 
 	<% end %>
 
