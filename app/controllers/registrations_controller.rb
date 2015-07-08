@@ -24,7 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
     root_path
   end
 
- def create
+  def create
     build_resource(sign_up_params)
 
     resource.save

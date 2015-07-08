@@ -7,19 +7,5 @@
 <!-- User Profile Info -->
 <%= render 'users/profile' %>
 
-<!-- User's Posts Section -->
-<div class="container">
-
-	<h3><%= @user.full_name %>'s Wall</h3>
-
-	<!-- New Post Section -->
-	
-	<%= render 'posts/post_form' %>
-	
-	<!-- List of User's Posts -->
-	<%= render 'posts/timeline_posts' %>
-
-</div>
-
 <!-- User's Friends Section -->
 <%= render 'friendships/friends' %>

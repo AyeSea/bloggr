@@ -1,13 +1,22 @@
 <!-- User Profile Info -->
 <div class="container">
-	<h3>Profile</h3>
-	<%= gravatar_for @user %>
-	<p>Name: <%= @user.full_name %></p>
-	<p>Birthday: <%= @user.birthday.strftime("%m-%d-%Y") %></p>
-	<p>Gender: <%= @user.full_gender %></p>
-	<p>Email: <%= @user.email %></p>
-	<!-- Users can only update their own profiles. -->
-	<% if @user == current_user %>
-	<p><%= link_to "Update Profile Info", edit_user_registration_path(@user) %></p>
-	<% end %>
+	<div class="panel panel-primary">
+		
+		<div class="panel-body">
+
+			<h3>Profile</h3>
+			<%= gravatar_for @user %>
+			<p>Name: <%= @user.full_name %></p>
+			<p>Gender: <%= @user.full_gender %></p>
+			<p>Email: <%= @user.email %></p>
+
+			<!-- Only the given user can update his/her profile and view his/her birthday. -->
+			<% if @user == current_user %>
+			<p>Birthday: <%= @user.birthday.strftime("%m-%d-%Y") %></p>
+			<p><%= link_to "Update Profile Info", edit_user_registration_path(@user) %></p>
+			<% end %>
+			
+			</div>
+
+	</div>
 </div>

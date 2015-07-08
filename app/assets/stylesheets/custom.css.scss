@@ -6,6 +6,7 @@ $header-footer-background: #2e2e1f;
 $header-footer-text: #fff;
 $button-text: #aaa;
 $hover-blue: #6586a3;
+$body-background: #f2f2f2;
 
 /* Flash Messages */
 
@@ -15,6 +16,7 @@ $hover-blue: #6586a3;
 
 .alert {
 	margin: 0;
+	padding-left: 105px;
 }
 
 /* Header */
@@ -100,6 +102,18 @@ $hover-blue: #6586a3;
 	min-height: 900px;
 	max-height: 1800px;
 	
+	input {
+		color: #000;
+	}
+
+	label:hover {
+		font-size: 18px;
+	}
+
+	.btn:hover {
+		background-color: $hover-blue;
+		transition: all 0.5s ease;
+	}
 
 	.jumbotron-left-col {
 
@@ -118,20 +132,14 @@ $hover-blue: #6586a3;
 	}
 }
 
-.signup-form {
+.body-content {
+	background-color: $body-background;
+}
 
-	input {
-		color: #000;
-	}
-
-	label:hover {
-		font-size: 18px;
-	}
-
-	.btn:hover {
-		background-color: $hover-blue;
-		transition: all 0.5s ease;
-	}
+.friend-menu {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	width: 25%;
 }
 
 /* Footer */
@@ -163,13 +171,40 @@ $hover-blue: #6586a3;
 	}
 }
 
+.full-name {
+	color: #000;
+}
 
+.full-name:hover {
+	text-decoration: none;
+	font-weight: bold;
+	transition: all 0.3s ease;
+}
 
+/* Comments */
+.panel {
+	border: 1px solid rgb(221,221,221);
 
-/* Panel Body 2 (class for comments nested in posts) */
+	.btn {
+
+		a {
+		color: #fff;
+		}
+
+	}
+
+}
+
 .panel-body-2 {
 	@extend .panel-body;
 	margin-left: 10px;
+	width: 50%;
+
+}
+
+.comment-box {
+	margin: 0 20px;
+	border-bottom: 1px solid #000;
 }
 
 

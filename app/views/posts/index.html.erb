@@ -1,22 +1,18 @@
 <!-- User's Public Profile Page -->
-<div class="container">
-	<h1><%= @user.full_name %></h1>
+<div class="container-fluid body-content">
+
+	<div class="container">
+		<h1><%= @user.full_name %></h1>
+	</div>
+
+	<!-- Profile Info -->
+	<%= render 'users/profile' %>
+
+	<!-- New Post Section -->
+	<%= render 'posts/post_form' %>
+
+	<!-- Posts (user and user's friends) -->
+
+	<%= render 'posts/timeline_posts' %>
+
 </div>
-
-<!-- Profile Info -->
-<div class="container">
-<%= render 'users/profile' %>
-</div>
-
-<!-- New Post Section -->
-<div class="container">
-<%= render 'posts/post_form' %>
-</div>
-
-<!-- Posts (user and user's friends) -->
-
-<div class="container">
-	<h3><%= @user.full_name %>'s Wall</h3>
-</div>
-
-<%= render 'posts/timeline_posts' %>

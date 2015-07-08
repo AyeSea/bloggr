@@ -3,8 +3,8 @@
 	
 	<% @non_friends.each do |user| %>
 
-		<div class="friend-menu">
-			<h3 class="fullname"><%= user.first_name %> <%= user.last_name %></h3>
+		<div class="panel panel-default friend-menu">
+			<h3><%= link_to user.full_name, user_posts_path(user), class: "full-name" %></h3>
 		
 			<!-- if there is a pending request sent by current user, show as pending acceptance -->
 			<% if current_user.accepters.include?(user) %>

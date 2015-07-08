@@ -4,6 +4,9 @@
 -->
 
 <div class="container">
+
+	<h3><%= @user.first_name %>'s Posts</h3>
+
 	<% @posts.each do |post| %>
 		
 		<!-- used during development to see what objects were created:
@@ -13,19 +16,19 @@
 		<div class="panel panel-default">
 				
 			<div class="panel-body">
-				<p>Author: <%= post.user.full_name %></p>
-				<p>Post: <%= post.content %></p>
-				<p>Date: <%= post.created_at %></p>
-				<p><%= pluralize(post.likes.count, "like") %></p>
+				<p><strong>Author:</strong> <%= post.user.full_name %></p>
+				<p><strong>Post:</strong> <%= post.content %></p>
+				<p><strong>Date:</strong> <%= post.created_at %></p>
+				<p class="btn btn-primary"><%= pluralize(post.likes.count, "like") %></p>
 
 				<!-- add a like if you haven't already liked this post -->
 				<% unless post.likes.find_by(user_id: current_user.id) %>
-				<div class="btn btn-default"><%= link_to "Like", likes_path(post_id: post.id), method: :post %></div>
+				<%= link_to "Like", likes_path(post_id: post.id), method: :post, class: "btn btn-success" %>
 				<!-- unlike this post if you've liked it already -->
 				<% else %>
 				<!-- chose to provide a default id vlaue of 1, as the route requires a non-nil value for the id parameter.
 					   note, the actual post is identified by the controller's before actions -->				
-				<div class="btn btn-default"><%= link_to "Unlike", like_path(id: 1, post_id: post.id), method: :delete %></div>
+				<%= link_to "Unlike", like_path(id: 1, post_id: post.id), method: :delete, class: "btn btn-danger" %>
 				<% end %>
 
 				<!-- current user can delete his/her posts -->
@@ -39,8 +42,7 @@
 			
 			<!-- Section to Add Comments -->
 			<%= render 'comments/comment_form', post: post %>
-
-		</div>
+	</div>
 
 	<% end %>
 </div>
