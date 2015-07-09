@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
 	validates :last_name, presence: true
 
 	validates :email, presence: true, confirmation: true
-
-	validates :email_confirmation, presence: true
+	#Don't need to validate email_confirmation's presence, as Devise already checks whether email and email confirmation match.
+	#Including the email_confirmation validation causes issues when updating user profile.
 
 	validates :birthday, presence: true
 

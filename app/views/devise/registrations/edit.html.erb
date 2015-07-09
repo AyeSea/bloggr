@@ -1,5 +1,5 @@
 <div class="container-fluid jumbotron">
-  <div class="container update-profile">
+  <div class="container">
 
     <h1>Update Profile</h1>
 
@@ -23,7 +23,7 @@
 
       <div class="field">
         <%= f.label :email_confirmation %><br>
-        <%= f.email_field :email_confirmation, value: resource.email %><br>
+        <%= f.email_field :email_confirmation %><br>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
