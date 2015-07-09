@@ -4,9 +4,14 @@
 	<% if current_user.accepting_friendships.any? %>
 	<!-- show pending friend requests -->
 		<% @pending_friendships.each do |friendship| %>
-			<p><%= friendship.requester.first_name %> <%= friendship.requester.last_name %></p>
-			<p><%= link_to "Confirm", friendship_path(requester_id: friendship.requester), method: :patch %></p>
-			<p><%= link_to "Delete Request", friendship_path(friend_id: friendship.requester), method: :delete %></p>
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<%= friendship.requester.first_name %> <%= friendship.requester.last_name %>
+					<%= link_to "Confirm", friendship_path(requester_id: friendship.requester), method: :patch, class: "btn btn-success" %>
+					<%= link_to "Delete Request", friendship_path(friend_id: friendship.requester), method: :delete, class: "btn btn-danger" %>
+				</div>
+			</div>
 		<% end %>
 
 	<% else %>

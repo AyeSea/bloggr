@@ -18,7 +18,17 @@
 	<%= render 'posts/post_form' %>
 
 	<!-- Posts (user's posts only) -->
+	<% if current_user.friends.include?(@user) || current_user == @user %>
+
 	<%= content_for :header_title, "#{@user.full_name}'s Posts" %>
 	<%= render 'posts/timeline_posts' %>
+
+	<% else %>
+
+	<div class="container">
+		<h3>You cannot view this user's posts as you are not friends!</h3>
+	</div>
+
+	<% end %>
 
 </div>

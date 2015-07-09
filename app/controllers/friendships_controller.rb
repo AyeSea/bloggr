@@ -18,7 +18,7 @@ class FriendshipsController < ApplicationController
 			flash[:error] = "Error! Friend request could not be sent!"
 		end
 
-		redirect_to users_path
+		redirect_to :back
 	end
 
 	#Accept a friend request (i.e. pending friendship) changes the value of the accepted column to true.
