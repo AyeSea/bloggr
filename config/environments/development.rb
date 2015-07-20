@@ -42,3 +42,5 @@ Rails.application.configure do
   # Set email delivery method in development environment
   config.action_mailer.delivery_method = :letter_opener
 end
+
+ Rails.application.routes.default_url_options[:host] = 'domain.com'
