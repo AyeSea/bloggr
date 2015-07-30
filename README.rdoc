@@ -1,28 +1,13 @@
-== README
+== bloggR
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A social blogging app built using HTML, CSS (with Bootstrap and Sass), Ruby, and Rails (with a PostgreSQL database).
 
-Things you may want to cover:
+As with Facebook and Twitter, users can signup, add friends, create and like posts and comments, and view a feed with their friends' posts and their own posts. Additionally, this app interacts with Facebook's API and allows users to signin using their Facebook accounts.
 
-* Ruby version
+Future plans for this project include:
 
-* System dependencies
+* Interactivity through JavaScript and jQuery
+* More testing (current tests using MiniTest)
+* More custom styling
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This was my version of the final project for the Rails section of The Odin Project. Please visit the project page for more details[http://www.theodinproject.com/ruby-on-rails/final-project].
