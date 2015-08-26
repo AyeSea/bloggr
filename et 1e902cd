@@ -1,0 +1,49 @@
+[33me89cf78[m update app name to bloggr
+[33m1e902cd[m Update README.rdoc
+[33m12875cc[m fix password reset feature
+[33m6137127[m shorten button text for cleaner header in smaller screens
+[33m9dbd82c[m update positioning of flash message text
+[33mca4f1e6[m fix user profile update page
+[33m7808c99[m update pending friends page; users cannot view posts from non-friends
+[33mc91f4ac[m a user cannot add him/herself as a friend
+[33m42224e1[m move friend buttons to partial view and show on user's public profile
+[33m139795c[m author names for posts and comments link to their public profile
+[33m880e8e7[m update min height for body and add viewport tag to head
+[33m75530dd[m show all posts for user#show and user's posts only for posts#index
+[33mb1ca7d1[m update posts to display in descending order
+[33m29ccd16[m update general styling. separate viewable content in posts#index and user#show
+[33mae679b5[m update flash message styling
+[33m08b0da4[m update jumbotron height and add text
+[33m852cb93[m update background image url
+[33m427bd60[m update body, footer, and general styling
+[33m071a647[m make header elements responsive
+[33m0740de4[m update logged in and logged out headers
+[33m5c47794[m include SendGrid add-on for production env
+[33mb60076b[m add signup emails and letter_opener to test in dev
+[33m63a20c2[m refactor controller and view code. create partials
+[33m229ca0b[m allow users to login with facebook using omniauth
+[33me322880[m update root page styling
+[33mf7c71b7[m update user edit page
+[33m4543647[m add partial view for user profile info
+[33m029986b[m update gender selection radio buttons
+[33mcb7df67[m create timeline to display user and user's friends' posts
+[33mab3af99[m comments can be liked/unliked
+[33mbe1e54b[m users can create and remove comments for posts
+[33m4da842f[m users can like/unlike posts
+[33mb32b2fb[m add post model. users can create and delete posts
+[33m9aa0756[m users can add and remove each other as friends
+[33m8259c33[m redirect user to previous page (if applicable) on signin
+[33m1c0bc34[m add site header and footer as partials
+[33mf1e3db2[m add user model tests
+[33mc96b2f5[m add guard and minitest_reporters gems
+[33m3e7b752[m signin user after successful signup and show user profile on signin
+[33m3857bb7[m add markup for homepage body
+[33mb681029[m add login and signup forms to homepage
+[33m3564245[m add users to seed file
+[33mc3fae97[m configure devise settings and update user signup form
+[33meba3947[m add devise gem
+[33mebc5287[m add user model w/ validations, controller, and bootstrap-sass
+[33me9276ba[m update ruby version and add puma config file
+[33m834d9b9[m add puma gem
+[33md733351[m update gemfile
+[33meff2cda[m initial commit
