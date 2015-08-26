@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_in_path_for(resource)
-    session[:previous_url]
+    session[:previous_url] || current_user
   end
 
   def after_sign_out_path_for(resource)
