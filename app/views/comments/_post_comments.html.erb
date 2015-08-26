@@ -15,7 +15,7 @@
 	<% end %>
 
 	<p><strong>Commenter:</strong> <%= link_to comment.user.full_name, user_posts_path(comment.user) %></p>
-	<p><strong>Created On:</strong> <%= comment.created_at %></p>
+	<p><strong>Created On:</strong> <%= comment.created_at.strftime('%-m/%d/%y at %l:%M%P') %></p>
 
 	<!-- allow comment creator to delete his/her comment -->
 	<% if comment.user == current_user %>

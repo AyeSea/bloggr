@@ -22,7 +22,7 @@
 			<div class="panel-body">
 				<p><strong>Author:</strong> <%= link_to post.user.full_name, user_posts_path(post.user) %></p>
 				<p><strong>Post:</strong> <%= post.content %></p>
-				<p><strong>Date:</strong> <%= post.created_at %></p>
+				<p><strong>Date:</strong> <%= post.created_at.strftime('%-m/%d/%y at %l:%M%P') %></p>
 				<p class="btn btn-primary"><%= pluralize(post.likes.count, "like") %></p>
 
 				<!-- add a like if you haven't already liked this post -->
