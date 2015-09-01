@@ -2,6 +2,8 @@
 
 A social blogging app built using HTML, CSS (with Bootstrap and Sass), Ruby, and Rails (with a PostgreSQL database).
 
+View on Heroku[http://lit-waters-7717.herokuapp.com/].
+
 As with Facebook and Twitter, users can signup, add friends, create and like posts and comments, and view a feed with their friends' posts and their own posts. Additionally, this app interacts with Facebook's API and allows users to signin using their Facebook accounts.
 
 Future plans for this project include:
