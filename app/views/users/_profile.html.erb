@@ -5,7 +5,11 @@
 		<div class="panel-body">
 
 			<h3>Profile</h3>
-			<%= gravatar_for @user %>
+			<!-- Profile Image using Gravatar service -->
+			<!--<%= gravatar_for @user %>-->
+
+			<!-- Profile Image using Paperclip (users can upload directly to app) -->
+			<%= image_tag @user.avatar.url(:medium) %>
 			<p>Name: <%= @user.full_name %></p>
 			<p>Gender: <%= @user.full_gender %></p>
 			<p>Email: <%= @user.email %></p>

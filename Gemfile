@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Use paperclip gem for image uploading
+gem "paperclip", "~> 4.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
